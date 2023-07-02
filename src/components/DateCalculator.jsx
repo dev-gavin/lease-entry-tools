@@ -1,6 +1,8 @@
 import { add, format } from 'date-fns'
 import { useState } from 'react'
 import Module from '../../blocks/Module'
+import ClearButton from '../../blocks/Module/ClearButton'
+import DateCalculatorStyle from './DateCalculator-Style'
 
 function DateCalculator() {
     const [dateForm, setDateForm] = useState({
@@ -17,6 +19,15 @@ function DateCalculator() {
                 ...prevDateForm,
                 [name]: value,
             }
+        })
+    }
+
+    const handleClick = () => {
+        setDateForm({
+            date: '',
+            days: '',
+            months: '',
+            years: '',
         })
     }
 
@@ -39,50 +50,67 @@ function DateCalculator() {
         resultDateLess = ''
     }
 
-    const isResultsDisplayed = dateForm.days + dateForm.months + dateForm.years
+    const isResultsDisplayed =
+        dateForm.days + dateForm.months + dateForm.years && resultDate
 
     return (
         <>
-            <Module>
-                <Module.Title>Date Calculator</Module.Title>
-                <Module.InputContainer>
-                    <input
+            <DateCalculatorStyle.Main>
+                <Module>
+                    <Module.Title>Date Calculator</Module.Title>
+                    <Module.TextInput
                         placeholder='mm/dd/yyyy'
                         maxLength='10'
                         name='date'
-                        value={dateForm.inputDate}
+                        value={dateForm.date}
                         type='text'
                         onChange={handleChange}
                     />
-                    <input
+                    <Module.TextInput
                         name='days'
                         value={dateForm.days}
                         onChange={handleChange}
                         placeholder='(+/-) days'
                         type='number'
                     />
-                    <input
+                    <Module.TextInput
                         name='months'
                         value={dateForm.months}
                         placeholder='(+/-) months'
                         onChange={handleChange}
                         type='number'
                     />
-                    <input
+                    <Module.TextInput
                         name='years'
                         value={dateForm.years}
                         placeholder='(+/-) years'
                         onChange={handleChange}
                         type='number'
                     />
-                </Module.InputContainer>
-                {isResultsDisplayed && (
-                    <div className='module__result-container flex'>
-                        <div className='module__result'>{resultDate}</div>
-                        <div className='module__result'>{resultDateLess}</div>
-                    </div>
-                )}
-            </Module>
+                    <ClearButton
+                        className='clear-button'
+                        onClick={handleClick}>
+                        Clear
+                    </ClearButton>
+
+                    {isResultsDisplayed && (
+                        <DateCalculatorStyle.ResultsContainer>
+                            <div className='module__result-container'>
+                                <p className='module__result-label'>
+                                    Result (-1)
+                                </p>
+                                <p className='module__result'>
+                                    {resultDateLess}
+                                </p>
+                            </div>
+                            <div className='module__result-container'>
+                                <p className='module__result-label'>Result</p>
+                                <p className='module__result'>{resultDate}</p>
+                            </div>
+                        </DateCalculatorStyle.ResultsContainer>
+                    )}
+                </Module>
+            </DateCalculatorStyle.Main>
         </>
     )
 }
