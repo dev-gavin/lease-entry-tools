@@ -5,15 +5,18 @@ import ClearButton from '../../blocks/Module/ClearButton'
 import DateCalculatorStyle from './DateCalculator-Style'
 
 function DateCalculator() {
-    const [dateForm, setDateForm] = useState({
+    const blankForm = {
         date: '',
         days: '',
         months: '',
         years: '',
-    })
+    }
+
+    const [dateForm, setDateForm] = useState(blankForm)
 
     const handleChange = (event) => {
         const { name, value } = event.target
+
         setDateForm((prevDateForm) => {
             return {
                 ...prevDateForm,
@@ -23,12 +26,7 @@ function DateCalculator() {
     }
 
     const handleClick = () => {
-        setDateForm({
-            date: '',
-            days: '',
-            months: '',
-            years: '',
-        })
+        setDateForm(blankForm)
     }
 
     let jsDate
@@ -60,6 +58,7 @@ function DateCalculator() {
                     <Module.Title>Date Calculator</Module.Title>
                     <Module.TextInput
                         placeholder='mm/dd/yyyy'
+                        // style={{ textIndent: '0', textAlign: 'center' }}
                         maxLength='10'
                         name='date'
                         value={dateForm.date}
@@ -92,6 +91,9 @@ function DateCalculator() {
                         onClick={handleClick}>
                         Clear
                     </ClearButton>
+
+                    {/* TODO: Make the result copy-able */}
+                    {/* TODO: Create Animation for the results when they reveal */}
 
                     {isResultsDisplayed && (
                         <DateCalculatorStyle.ResultsContainer>

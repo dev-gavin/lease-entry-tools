@@ -10,8 +10,13 @@ const ClearButton = styled.button`
     font-weight: 800;
     letter-spacing: 0.05em;
     color: white;
+    transition: background-color 0.1s;
 
     &:active {
+        box-shadow: inset 1px 1px 10px #333;
+    }
+
+    &:hover {
         background-color: #ea8d0b;
     }
 `

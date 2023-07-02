@@ -3,7 +3,7 @@ import TextInput from './TextInput'
 import Title from './Title'
 
 const Module = styled.div`
-    background-color: #f2f0ff;
+    background-color: #e8eafa;
     font-size: 1.5em;
     border-radius: 10px;
     max-width: 20em;
