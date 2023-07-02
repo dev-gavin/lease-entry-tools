@@ -1,13 +1,11 @@
-import DateCalculator from './components/DateCalculator/DateCalculator'
+import DateCalculator from './components/DateCalculator'
 
 function App() {
     return (
         <>
             <h1>Lease Entry Tools</h1>
             <main>
-                <section className='module'>
-                    <DateCalculator />
-                </section>
+                <DateCalculator />
             </main>
         </>
     )
