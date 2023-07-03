@@ -1,8 +1,8 @@
 import { add, format } from 'date-fns'
 import { useState } from 'react'
-import Module from '../../blocks/Module'
-import ClearButton from '../../blocks/Module/ClearButton'
-import DateCalculatorStyle from './DateCalculator-Style'
+import Module from '../../shared/Module'
+import ClearButton from '../../shared/Module/ClearButton'
+import DateCalculatorStyle from './index.style'
 
 function DateCalculator() {
     const blankForm = {
@@ -12,7 +12,7 @@ function DateCalculator() {
         years: '',
     }
 
-    const [dateForm, setDateForm] = useState(blankForm)
+    const [dateForm, setDateForm] = useState(() => blankForm)
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -25,7 +25,7 @@ function DateCalculator() {
         })
     }
 
-    const handleClick = () => {
+    const clearForm = () => {
         setDateForm(blankForm)
     }
 
@@ -53,42 +53,41 @@ function DateCalculator() {
 
     return (
         <>
-            <DateCalculatorStyle.Main>
+            <DateCalculatorStyle.Wrapper>
                 <Module>
                     <Module.Title>Date Calculator</Module.Title>
                     <Module.TextInput
-                        placeholder='mm/dd/yyyy'
-                        // style={{ textIndent: '0', textAlign: 'center' }}
                         maxLength='10'
                         name='date'
-                        value={dateForm.date}
-                        type='text'
                         onChange={handleChange}
+                        placeholder='mm/dd/yyyy'
+                        type='text'
+                        value={dateForm.date}
                     />
                     <Module.TextInput
                         name='days'
-                        value={dateForm.days}
                         onChange={handleChange}
                         placeholder='(+/-) days'
                         type='number'
+                        value={dateForm.days}
                     />
                     <Module.TextInput
                         name='months'
-                        value={dateForm.months}
-                        placeholder='(+/-) months'
                         onChange={handleChange}
+                        placeholder='(+/-) months'
                         type='number'
+                        value={dateForm.months}
                     />
                     <Module.TextInput
                         name='years'
-                        value={dateForm.years}
-                        placeholder='(+/-) years'
                         onChange={handleChange}
+                        placeholder='(+/-) years'
                         type='number'
+                        value={dateForm.years}
                     />
                     <ClearButton
                         className='clear-button'
-                        onClick={handleClick}>
+                        onClick={clearForm}>
                         Clear
                     </ClearButton>
 
@@ -112,7 +111,7 @@ function DateCalculator() {
                         </DateCalculatorStyle.ResultsContainer>
                     )}
                 </Module>
-            </DateCalculatorStyle.Main>
+            </DateCalculatorStyle.Wrapper>
         </>
     )
 }

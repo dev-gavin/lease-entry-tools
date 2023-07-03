@@ -1,9 +1,15 @@
 import styled from 'styled-components'
 
-const Main = styled.div`
+const Wrapper = styled.div`
+    width: 25rem;
+    margin: 1rem auto;
     .clear-button {
         display: block;
         margin: 2em auto 0.5em;
+    }
+
+    & input {
+        margin: 2rem auto;
     }
 `
 
@@ -31,7 +37,7 @@ const ResultsContainer = styled.div`
 `
 
 const DateCalculatorStyle = {
-    Main,
+    Wrapper,
     ResultsContainer,
 }
 
