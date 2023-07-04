@@ -1,11 +1,16 @@
 import styled from 'styled-components'
+import {
+    ModuleContainer,
+    ModuleTextInput,
+    ModuleTitle,
+} from '../../shared/Module/index.style'
 
-const Wrapper = styled.div`
+export const Title = ModuleTitle
+
+export const EscalationDetectorWrapper = styled(ModuleContainer)`
     width: 50em;
-
-    & input {
-        text-align: right;
-    }
 `
 
-export default Wrapper
+export const TextInput = styled(ModuleTextInput)`
+    text-align: right;
+`

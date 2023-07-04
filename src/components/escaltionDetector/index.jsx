@@ -1,8 +1,7 @@
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
-import Module from '../../shared/Module/index'
 import Row from './Row'
-import Wrapper from './index.style'
+import { EscalationDetectorWrapper, TextInput, Title } from './index.style'
 
 function EscalationDetector() {
     const [inputAmounts, setInputAmounts] = useState([])
@@ -28,17 +27,15 @@ function EscalationDetector() {
 
     return (
         <>
-            <Wrapper>
-                <Module>
-                    <Module.Title>Escalation Detector</Module.Title>
-                    <Module.TextInput
-                        type='number'
-                        name='initialAmount'
-                        onChange={handleInitialChange}
-                    />
-                    {inputAmounts.length > 0 && tableRows}
-                </Module>
-            </Wrapper>
+            <EscalationDetectorWrapper>
+                <Title>Escalation Detector</Title>
+                <TextInput
+                    type='number'
+                    name='initialAmount'
+                    onChange={handleInitialChange}
+                />
+                {inputAmounts.length > 0 && tableRows}
+            </EscalationDetectorWrapper>
         </>
     )
 }

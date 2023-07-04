@@ -11,6 +11,7 @@ const ClearButton = styled.button`
     letter-spacing: 0.05em;
     color: white;
     transition: background-color 0.1s;
+    display: block;
 
     &:active {
         box-shadow: inset 1px 1px 10px #333;
