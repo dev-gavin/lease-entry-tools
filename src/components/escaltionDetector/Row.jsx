@@ -1,20 +1,20 @@
-import RowStyle from './Row.style'
+import { RowContainer } from './Row.style'
 import { TextInput } from './index.style'
 
-function Row(props) {
+function Row({ handleChange, rowInfo, removeRow }) {
     return (
         <>
-            <RowStyle>
+            <RowContainer>
                 <button
-                    onClick={() => props.handleClick(props.id)}
+                    onClick={() => removeRow(rowInfo.id)}
                     className='subtract_button'>
                     -
                 </button>
-                <TextInput />
+                <button className='add_button'>+</button>
+                <TextInput onChange={() => handleChange(row.id)} />
                 <p className='percentage_escalation'>test</p>
                 <p className='amount_escalation'>test</p>
-                <button className='add_button'>+</button>
-            </RowStyle>
+            </RowContainer>
         </>
     )
 }

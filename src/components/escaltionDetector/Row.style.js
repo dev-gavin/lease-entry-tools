@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const RowStyle = styled.div`
+export const RowContainer = styled.div`
     display: grid;
     grid-template-columns: 0.5fr 1.5fr 1fr 1fr 0.5fr;
     gap: 1rem;
@@ -26,5 +26,3 @@ const RowStyle = styled.div`
         justify-self: center;
     }
 `
-
-export default RowStyle

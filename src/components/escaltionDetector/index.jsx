@@ -1,26 +1,57 @@
 import { nanoid } from 'nanoid'
 import { useState } from 'react'
 import Row from './Row'
-import { EscalationDetectorWrapper, TextInput, Title } from './index.style'
+import {
+    ClearButton,
+    EscalationDetectorWrapper,
+    TextInput,
+    Title,
+} from './index.style'
 
 function EscalationDetector() {
-    const [inputAmounts, setInputAmounts] = useState([])
+    const [amountRows, setAmountRows] = useState([])
 
     const handleInitialChange = (event) => {
-        if (inputAmounts.length === 0) {
-            setInputAmounts([{ id: nanoid(), value: '' }])
+        if (amountRows.length === 0) {
+            setAmountRows([
+                {
+                    id: nanoid(),
+                    inputAmount: '',
+                    percentEscalation: '',
+                    amountEscalation: '',
+                },
+            ])
         }
 
         if (event.target.value === '') {
-            setInputAmounts([])
+            setAmountRows([])
         }
     }
 
-    const tableRows = inputAmounts.map((amount) => {
+    const handleChange = (id) => {
+        console.log('🚀 ~ file: index.jsx:25 ~ handleChange ~ id:', id)
+    }
+
+    // {
+    //     id:
+    //     inputAmount:
+    //     percentEscalation:
+    //     amountEscalation:
+    // }
+
+    const removeRow = (rowId) => {
+        setAmountRows((prevAmountRows) =>
+            prevAmountRows.filter((row) => row.id !== rowId)
+        )
+    }
+
+    const rows = amountRows.map((row) => {
         return (
             <Row
-                key={amount.id}
-                id={amount.id}
+                key={row.id}
+                rowInfo={row}
+                handleChange={handleChange}
+                removeRow={removeRow}
             />
         )
     })
@@ -34,7 +65,8 @@ function EscalationDetector() {
                     name='initialAmount'
                     onChange={handleInitialChange}
                 />
-                {inputAmounts.length > 0 && tableRows}
+                <ClearButton>Clear</ClearButton>
+                {amountRows.length > 0 && rows}
             </EscalationDetectorWrapper>
         </>
     )
